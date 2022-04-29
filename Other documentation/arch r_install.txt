@@ -1,0 +1,152 @@
+//pre-installation
+1.set clock and check internet
+1.1.set clock
+timedatectl set-ntp true
+1.2.check
+timedatectl status
+1.3.internet
+ping archlinux.org
+Ctrl+C
+
+2.partition
+
+2.1.see partitions
+lsblk       //simple
+fdisk -l    //more detailed
+
+2.2.partition scheme for gpt
+    //-/mnt/boot - efi system partition - at least 300mb
+    // swap - more than 512mb
+    // /mnt - root partition - the rest
+
+2.3.patitioning itself - enter parted
+parted /dev/[disk] //usually sda
+2.3.0.create the partition table
+mklabel gpt
+print
+2.3.1.make efi partition
+mkpart "EFI system partition" fat32 1mb 301mb
+set 1 boot on
+print
+2.3.2.make swap partition
+mkpart "swap partition" linux-swap 301mb 2048+301mb(2349mb)
+print
+2.3.3.make root partition
+mkpart "root partition" ext4 2349mb 100%
+print
+quit
+
+2.4.format
+2.4.1.format efi partition
+mkfs.fat -F 32 /dev/[partition] //usually sda1
+2.4.2.format swap partition
+mkswap /dev/[partition]         //usually sda2
+2.4.3.format root partition
+mkfs.ext4 /dev/[partition]      //usually sda3
+
+2.5.mount
+2.5.1.mount root partition
+mount /dev/[partition] /mnt                 //usually sda3
+2.5.2.mount efi partition
+mount --mkdir /dev/[partition] /mnt/boot    //usually sda1
+2.5.3.enable swap partition
+swapon /dev/[partition]                     //usually sda2
+
+//instalattion
+3.installation
+3.1.check mirror list
+nano /etc/pacman.d/mirrorlist
+3.2.get base package, linux and others
+pacstrap /mnt base linux linux-firmware
+
+//configure the system
+4.generate fstab for drive
+genfstab -U /mnt >> /mnt/etc/fstab
+
+5.use root in the new installed system - chroot
+arch-chroot /mnt
+pacman -S efibootmgr dosfstools openssh os-prober mtools linux-headers networkmanager nano git base-devel
+
+6.timezone
+6.1.set time zone
+ln -sf /usr/share/zoneinfo/Europe/Bucharest /etc/localtime
+6.2.generate hwclock
+hwclock --systohc
+
+7.localization
+7.1.install nano
+pacman -S nano
+7.2.keyboard layout - if /etc/locale.gen is not generated use
+locale-gen
+7.3.keyboard layout - edit /etc/locale.gen and:
+//uncomment en_US.UTF-8 UTF-8
+//uncomment ro_RO.UTF-8 UTF-8
+nano /etc/locale.gen
+7.4.language - create /etc/locale.conf file and:
+//set LANG variable accordingly:
+//LANG=en_US.UTF-8
+nano /etc/locale.conf
+
+8.network - create a hostname - edit /etc/hostname file and:
+//set hostname accordingly:
+//RsPC
+nano /etc/hostname
+
+9.regen initramfs
+mkinitcpio -P
+
+10.set root password
+passwd
+
+11.bootloader
+11.1.install grub
+pacman -S grub
+11.2.install on efi partition
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=ArchLinux /dev/[disk] //usually sda
+//NOTE: IS A DISK NOT PART
+11.3.enable microcode for cpu
+pacman -S amd-ucode     //for amd
+pacman -S intel-ucode   //for intel
+11.4.grub config
+grub-mkconfig -o /boot/grub/grub.cfg
+
+12.reboot and eject installation media
+reboot
+
+13.login as root and check internet
+ip link
+systemctl start NetworkManager.service
+systemctl enable NetworkManager.service
+systemctl status NetworkManager.service
+nmcli dev status
+nmcli con up [interface]
+//settings = /etc/NetworkManager/system-connections/
+//others that idc rn
+
+14.new user configuration
+14.1.create a new user
+useradd -m r
+passwd r
+14.2.install sudo
+pacman -S sudo
+14.3.add user as sudoer in /etc/sudoers (under root)
+nano /etc/sudoers
+
+15.1.install gui - kde plasma
+pacman -S xorg plasma kde-applications
+pacman -S konsole
+systemctl enable sddm.service
+15.2.install video driver
+//
+15.3.reboot and pray
+reboot
+
+//quiet grub menu
+edit /etc/default/grub - GRUB_HIDDEN_TIMEOUT_QUIET=true
+grub-mkconfig -o /boot/grub/grub.cfg
+
+//faster systemd shutdown
+edit /etc/systemd/system.conf - DefaultTimeoutStopSec=5s
+
+//for vbox host
+https://wiki.archlinux.org/title/VirtualBox/Install_Arch_Linux_as_a_guest#Load_the_VirtualBox_kernel_modules
