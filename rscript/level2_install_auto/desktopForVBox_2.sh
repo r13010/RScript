@@ -26,8 +26,10 @@ pacman -S grub --noconfirm
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=RsVbox /dev/sda
 # 11.gui
 echo "$(tput setaf 1)] rscript: 11.GUI (auto for KdePlasma)... $(tput setaf 7)"
-pacman -S xorg plasma konsole sudo --noconfirm
+pacman -S xorg plasma konsole sudo sddm --noconfirm
 systemctl enable sddm.service
+pacman -S virtualbox-guest-utils --noconfirm
+systemctl enable vboxservice.service
 # 12.gui
 echo "$(tput setaf 1)] rscript: 12.User configurations... $(tput setaf 7)"
 useradd -m r
