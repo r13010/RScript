@@ -31,7 +31,7 @@ systemctl enable sddm.service
 # 12.gui
 echo "$(tput setaf 1)] rscript: 12.User configurations... $(tput setaf 7)"
 useradd -m r
-echo "$(tput setaf 1)] rscript: nano /etc/sudoers // add user $(tput setaf 7)"
+echo "r ALL=(ALL:ALL) ALL" >> /etc/sudoers
 
 echo "$(tput setaf 1)] $(tput setaf 7)"
 echo "$(tput setaf 1)] rscript: Rerun RSCRIPT: desktopForVBox_3 $(tput setaf 7)"
