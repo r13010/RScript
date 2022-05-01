@@ -25,7 +25,7 @@ parted /dev/[disk] //usually sda
 mklabel gpt
 print
 2.3.1.make efi partition
-mkpart "EFI system partition" fat32 1mb 301mb
+mkpart "EFI" fat32 1mb 301mb
 set 1 boot on
 print
 2.3.2.make swap partition
@@ -75,7 +75,7 @@ hwclock --systohc
 
 7.localization
 7.1.install nano
-pacman -S nano
+//
 7.2.keyboard layout - if /etc/locale.gen is not generated use
 locale-gen
 7.3.keyboard layout - edit /etc/locale.gen and:
@@ -95,8 +95,7 @@ nano /etc/hostname
 9.regen initramfs
 mkinitcpio -P
 
-10.set root password
-passwd
+
 
 11.bootloader
 11.1.install grub
@@ -126,6 +125,9 @@ nmcli con up [interface]
 14.new user configuration
 14.1.create a new user
 useradd -m r
+10.set root password
+passwd
+//and then for r
 passwd r
 14.2.install sudo
 pacman -S sudo
