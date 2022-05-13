@@ -16,10 +16,19 @@ echo "$(tput setaf 12)]] RSCRIPT: Welcome!$(tput setaf 7)"
 echo " "
 sleep 1s
 
-# Create configuration
+# Create configuration - 0-startup
 bash $SCRIPTS_DIR/rsplash.sh
 echo " "
 echo "$(tput setaf 12)]] rscript: Starting installer...$(tput setaf 7)"
 echo " "
 sleep 1s
 bash $SCRIPTS_DIR/0-startup.sh
+
+source $CONFIGS_DIR/setup.conf
+# Preinstalling - 1-preinstall
+bash $SCRIPTS_DIR/rsplash.sh
+echo " "
+echo "$(tput setaf 12)]] rscript: Preinstall...$(tput setaf 7)"
+echo " "
+sleep 1s
+bash $SCRIPTS_DIR/1-preinstall.sh
