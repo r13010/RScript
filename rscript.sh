@@ -1,16 +1,23 @@
 #!/bin/bash
-clear
-# greeter
-echo "$(tput setaf 1)] RSCRIPT: Welcome, select an option:$(tput setaf 7)"
 
-# menu
-select yn in "ManualInstall" "AutoInstall" "Reload" "About" "Version" "Exit RSCRIPT"; do
-    case $yn in
-        "ManualInstall" ) bash rscript/level1/install_manual.sh; break;;
-        "AutoInstall" ) bash rscript/level1/install_auto.sh; break;;
-        "Reload" ) bash rscript_mgr.sh; break;;
-        "About" ) bash rscript/level1/info_about.sh; break;;
-        "Version" ) bash rscript/level1/info_version.sh; break;;
-        "Exit RSCRIPT" ) echo "$(tput setaf 1)] RSCRIPT: Exiting...$(tput setaf 7)"; exit; break;;
-    esac
-done
+# Find the name of the folder the scripts are in
+set -a
+SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+SCRIPTS_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"/rscript/scripts
+CONFIGS_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"/rscript/configs
+set +a
+
+# Greeter
+bash $SCRIPTS_DIR/rsplash.sh
+echo " "
+echo "] RSCRIPT: Welcome"
+echo " "
+sleep 1s
+
+# Create configuration
+bash $SCRIPTS_DIR/rsplash.sh
+echo " "
+echo "] rscript: Starting installer..."
+echo " "
+sleep 1s
+bash $SCRIPTS_DIR/0-startup.sh
