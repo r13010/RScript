@@ -141,7 +141,7 @@ bash $SCRIPTS_DIR/rsplash.sh
 # btrfs and ext4. Others will be added in future.
 filesystem () {
 
-echo  "
+echo "
 ] rscript: Please Select your file system for both boot and root
 "
 options=("btrfs" "ext4" "luks" "exit")

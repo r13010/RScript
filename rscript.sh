@@ -7,17 +7,19 @@ SCRIPTS_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd 
 CONFIGS_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"/rscript/configs
 set +a
 
+#echo "$(tput setaf 12)]$(tput setaf 7)"
+
 # Greeter
 bash $SCRIPTS_DIR/rsplash.sh
 echo " "
-echo "] RSCRIPT: Welcome"
+echo "$(tput setaf 12)]] RSCRIPT: Welcome!$(tput setaf 7)"
 echo " "
 sleep 1s
 
 # Create configuration
 bash $SCRIPTS_DIR/rsplash.sh
 echo " "
-echo "] rscript: Starting installer..."
+echo "$(tput setaf 12)]] rscript: Starting installer...$(tput setaf 7)"
 echo " "
 sleep 1s
 bash $SCRIPTS_DIR/0-startup.sh
