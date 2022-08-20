@@ -78,6 +78,7 @@ controller_full() {
 background_checks
 bash Resources/InstallArch/Full/1-full-setup-network.sh
 bash Resources/InstallArch/Full/2-full-setup-mirrors.sh
+bash Resources/InstallArch/Full/3-full-setup-partitioning.sh
 
 }
 
