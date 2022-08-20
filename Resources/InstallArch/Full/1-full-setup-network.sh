@@ -8,9 +8,12 @@ network(){
 
 echo -ne "
 --------------------------------------------------------------------------------
-    RSCRIPT - 1-full-network
+    RSCRIPT - 1-full-setup-network
 --------------------------------------------------------------------------------
 "
+
+timedatectl set-ntp true
+timedatectl status
 
 pacman -S --noconfirm --needed networkmanager dhclient
 systemctl enable --now NetworkManager

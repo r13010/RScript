@@ -12,9 +12,9 @@ echo -ne "
 --------------------------------------------------------------------------------
 "
 
-pacman -S --noconfirm --needed pacman-contrib curl
-pacman -S --noconfirm --needed reflector rsync grub arch-install-scripts git
+pacman -S --noconfirm --needed reflector
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+systemctl start reflector
 
 }
 
