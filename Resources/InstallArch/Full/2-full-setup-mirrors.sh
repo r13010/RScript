@@ -12,33 +12,13 @@ echo -ne "
 --------------------------------------------------------------------------------
 "
 
-pacman -S --noconfirm --needed reflector
+pacman -S --noconfirm --needed reflector curl
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 
-echo -ne "
---------------------------------------------------------------------------------
-    RSCRIPT - What country are you in?
---------------------------------------------------------------------------------
-"
-
-options=("Romania" "USA" "Another")
-select opt in "${options[@]}"
-do
-case $opt in
-    "Romania")
-        reflector --country romania --latest 200 --sort rate --save /etc/pacman.d/mirrorlist
-        break
-        ;;
-    "USA")
-        reflector --country usa --latest 200 --sort rate --save /etc/pacman.d/mirrorlist
-        break
-        ;;
-    "Another")
-        break
-        ;;
-    *) echo "Invalid option";;
-    esac
-done
+iso=$(curl -4 ifconfig.co/country-iso)
+echo "RSCRIPT: Country detected: $iso"
+echo "RSCRIPT: Starting reflector..."
+reflector --country $iso -f 5 --latest 200 --sort rate --save /etc/pacman.d/mirrorlist
 
 }
 
