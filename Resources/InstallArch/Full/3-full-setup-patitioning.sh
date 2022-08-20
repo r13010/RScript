@@ -38,12 +38,12 @@ options=("Choose a drive" "Wait, show me all my drives again")
 select opt in "${options[@]}"
 do
     case $opt in
-        "Choose partition")
+        "Choose a drive")
             break
             ;;
         "Wait, show me all my drives again")
             fdisk -l
-            sleep 3s
+            sleep 1s
             ;;
         *) echo "Invalid option";;
     esac
