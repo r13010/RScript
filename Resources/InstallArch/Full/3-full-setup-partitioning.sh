@@ -108,17 +108,14 @@ else
     mkfs.ext4 /dev/$DRIVE3 # Format root as ext4
 
     echo "RSCRIPT: Mounting partitions..."
-    mount /dev/$DRVIE3 /mnt
+    mount /dev/$DRIVE3 /mnt
     mount --mkdir /dev/$DRIVE1 /mnt/boot
     swapon /dev/$DRIVE2
 
     parted /dev/$DRIVE print -s # Print it again
 fi
+sleep 1s
 
-echo $DRIVE1"\n"
-echo $DRIVE2"\n"
-echo $DRIVE3"\n"
-df
 }
 
 ### Define script logic
