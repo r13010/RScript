@@ -20,6 +20,8 @@ echo "RSCRIPT: Country detected: $iso"
 echo "RSCRIPT: Starting reflector..."
 reflector --country $iso --latest 200 --sort rate --save /etc/pacman.d/mirrorlist
 
+sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
+
 }
 
 ### Define script logic
