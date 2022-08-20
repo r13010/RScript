@@ -54,6 +54,7 @@ echo "RSCRIPT: The selected drive is /dev/$DRIVE"
 sleep 1s
 umount -A --recursive /mnt # Make sure everything is unmounted before we start
 umount -A --recursive /mnt/boot
+rm -rf /mnt/*
 
 # Partition the drive as for UEFI or BIOS
 if [[ ! -d "/sys/firmware/efi" ]]; then
@@ -114,8 +115,10 @@ else
     parted /dev/$DRIVE print -s # Print it again
 fi
 
-pacstrap /mnt base linux linux-firmware
-genfstab -U /mnt >> /mnt/etc/fstab
+echo $DRIVE1"\n"
+echo $DRIVE2"\n"
+echo $DRIVE3"\n"
+df
 }
 
 ### Define script logic
