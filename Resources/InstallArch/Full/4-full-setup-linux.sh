@@ -20,6 +20,8 @@ sed -i 's/^# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: A
 pacstrap /mnt base linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 
+arch-chroot /mnt git clone https://github.com/r13010/RScript /home/RScript
+
 }
 
 ### Define script logic

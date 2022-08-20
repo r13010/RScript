@@ -12,7 +12,7 @@ echo -ne "
 --------------------------------------------------------------------------------
 "
 # Refreshing mirrors
-pacman -S --noconfirm --needed reflector curl
+pacman -S --noconfirm --needed reflector curl rsync
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 
 iso=$(curl -4 ifconfig.co/country-iso)

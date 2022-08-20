@@ -14,7 +14,7 @@ echo -ne "
 
 pacman -S --noconfirm --needed fdisk parted
 fdisk -l
-echo "\n"
+echo " "
 parted /dev/sda print devices
 DRIVE=sda
 
@@ -42,7 +42,7 @@ echo -ne "
         "Wait, show me all my drives again")
             clear
             fdisk -l
-            echo "\n"
+            echo " "
             parted /dev/sda print devices
             sleep 1s
             ;;
