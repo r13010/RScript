@@ -14,18 +14,21 @@ echo -ne "
 
 pacman -S --noconfirm --needed fdisk parted
 fdisk -l
+echo "\n"
 parted /dev/sda print devices
+DRIVE=sda
+
 #
 echo -ne "
 --------------------------------------------------------------------------------
     RSCRIPT: The current drive selected is /dev/$DRIVE. Is this correct?
 --------------------------------------------------------------------------------
 "
-options=("Yes, DELETE ALL DATA from this drive and install Arch" "Choose another drive" "Wait, show me all my drives again")
+options=("Yes, DELETE ALL DATA from this drive and install Arch Linux" "Choose another drive" "Wait, show me all my drives again")
 select opt in "${options[@]}"
 do
     case $opt in
-        "Yes, DELETE ALL DATA from this drive and install Arch")
+        "Yes, DELETE ALL DATA from this drive and install Arch Linux")
             break
             ;;
         "Choose another drive")
@@ -39,6 +42,7 @@ echo -ne "
         "Wait, show me all my drives again")
             clear
             fdisk -l
+            echo "\n"
             parted /dev/sda print devices
             sleep 1s
             ;;
@@ -49,6 +53,7 @@ done
 echo "RSCRIPT: The selected drive is /dev/$DRIVE"
 sleep 1s
 umount -A --recursive /mnt # Make sure everything is unmounted before we start
+umount -A --recursive /mnt/boot
 
 # Partition the drive as for UEFI or BIOS
 if [[ ! -d "/sys/firmware/efi" ]]; then
@@ -109,6 +114,8 @@ else
     parted /dev/$DRIVE print -s # Print it again
 fi
 
+pacstrap /mnt base linux linux-firmware
+genfstab -U /mnt >> /mnt/etc/fstab
 }
 
 ### Define script logic
