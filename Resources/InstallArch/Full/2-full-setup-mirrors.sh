@@ -14,7 +14,9 @@ echo -ne "
 
 pacman -S --noconfirm --needed reflector
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
-systemctl start reflector
+echo "RSCRIPT: Starting reflector.service"
+systemctl start reflector.service
+journalctl -u reflector.service
 
 }
 
