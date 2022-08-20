@@ -52,8 +52,32 @@ umount -A --recursive /mnt # Make sure everything is unmounted before we start
 
 # Partition the drive as for UEFI or BIOS
 if [[ ! -d "/sys/firmware/efi" ]]; then
-    echo pula bios
+    echo "RSCRIPT: System detected as BIOS"
+    # BIOS SYSTEM
+    parted /dev/$DRIVE print -s # Print it first
+    echo "RSCRIPT: Making partition table msdos..."
+    parted /dev/$DRIVE mklabel msdos -s # Make it msdos
+    echo "RSCRIPT: Making swap partition..."
+    parted /dev/$DRIVE mkpart "SWAP" linux-swap 1mb 4097mb -s # Make swap
+    echo "RSCRIPT: Making root partition..."
+    parted /dev/$DRIVE mkpart "ROOT" ext4 4098mb 100% -s # Make root
+
+    DRIVE1=$DRIVE"1"
+    DRIVE2=$DRIVE"2"
+    DRIVE3=$DRIVE"3"
+
+    echo "RSCRIPT: Formatting swap patition..."
+    mkswap /dev/$DRIVE1 # Format swap
+    echo "RSCRIPT: Formatting root patition..."
+    mkfs.ext4 /dev/$DRIVE2 # Format root as ext4
+
+    echo "RSCRIPT: Mounting partitions..."
+    mount /dev/$DRVIE2 /mnt
+    swapon /dev/$DRIVE1
+
+    parted /dev/$DRIVE print -s # Print it again
 else
+    echo "RSCRIPT: System detected as UEFI"
     # UEFI SYSTEM
     parted /dev/$DRIVE print -s # Print it first
     echo "RSCRIPT: Making partition table gpt..."
@@ -84,7 +108,6 @@ else
 
     parted /dev/$DRIVE print -s # Print it again
 fi
-
 
 }
 
