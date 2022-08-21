@@ -2,6 +2,7 @@
 
 # Splash
 bash home/RScript/Resources/Others/rsplash.sh
+sleep 0.5s
 
 # Setup bootloader
 bootloader() {
@@ -61,6 +62,10 @@ else
     # UEFI SYSTEM
     grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=ArchLinux /dev/$DRIVE
 fi
+
+grub-mkconfig -o /boot/grub/grub.cfg
+mkinitcpio -P
+
 }
 
 ### Define script logic
