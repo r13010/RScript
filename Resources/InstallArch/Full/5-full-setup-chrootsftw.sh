@@ -1,10 +1,11 @@
 #!/bin/bash
 
 # Splash
-bash Resources/Others/rsplash.sh
+#bash Resources/Others/rsplash.sh
+arch-chroot /mnt bash /home/RScript/Resources/Others/rsplash.sh
 
 # Setup other firmware
-firmware() {
+firmware2() {
 
 echo -ne "
 --------------------------------------------------------------------------------
@@ -19,4 +20,4 @@ systemctl enable NetworkManager.service
 }
 
 ### Define script logic
-firmware
+firmware2
