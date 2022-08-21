@@ -3,6 +3,7 @@
 # Splash
 bash Resources/Others/rsplash.sh
 
+
 # Setup network
 network() {
 

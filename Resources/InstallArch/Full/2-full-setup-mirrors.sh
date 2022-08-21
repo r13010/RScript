@@ -2,6 +2,7 @@
 
 # Splash
 bash Resources/Others/rsplash.sh
+bash home/RScript/Resources/Others/rsplash.sh
 
 # Setup mirrors
 mirrors() {

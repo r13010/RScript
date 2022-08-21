@@ -1,21 +1,17 @@
 #!/bin/bash
 
 # Splash
-bash Resources/Others/rsplash.sh
+bash home/RScript/Resources/Others/rsplash.sh
 
 # Setup the root user and a new user
 rootpass() {
-
 read -rs -p "My desired root password is " ROOTPASSWORD1
 read -rs -p "Retype it for confirmation " ROOTPASSWORD2
-
 }
 
 userpass() {
-
 read -rs -p "My desired user password is " USERPASSWORD1
 read -rs -p "Retype it for confirmation " USERPASSWORD2
-
 }
 
 usernpass() {
@@ -33,10 +29,10 @@ echo -ne "
 --------------------------------------------------------------------------------
 "
 rootpass
-while [[ $ROOTPASSWORD1 != $ROOTPASSWORD2 ]] then
+while [[ $ROOTPASSWORD1 != $ROOTPASSWORD2 ]] do
     echo "RSCRIPT: Passwords don't match."
     rootpass
-    fi
+    done
 
 passwd $ROOTPASSWORD1
 USERNAME="r"
