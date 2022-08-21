@@ -18,7 +18,7 @@ echo " "
 parted /dev/sda print devices
 DRIVE=sda
 
-#
+# Ask for the drive name
 echo -ne "
 --------------------------------------------------------------------------------
     RSCRIPT: The current drive selected is /dev/$DRIVE. Is this correct?
@@ -32,7 +32,7 @@ do
             break
             ;;
         "Choose another drive")
-            read -rs -p "My desired partition is /dev/" DRIVE
+            read -rs -p "My desired drive is /dev/" DRIVE
 echo -ne "
 --------------------------------------------------------------------------------
     RSCRIPT: The current drive selected is /dev/$DRIVE. Is this correct?
@@ -58,7 +58,7 @@ rm -rf /mnt/*
 
 # Partition the drive as for UEFI or BIOS
 if [[ ! -d "/sys/firmware/efi" ]]; then
-    echo "RSCRIPT: System detected as BIOS"
+    echo "RSCRIPT: System detected as BIOS..."
     # BIOS SYSTEM
     parted /dev/$DRIVE print -s # Print it first
     echo "RSCRIPT: Making partition table msdos..."
@@ -83,7 +83,7 @@ if [[ ! -d "/sys/firmware/efi" ]]; then
 
     parted /dev/$DRIVE print -s # Print it again
 else
-    echo "RSCRIPT: System detected as UEFI"
+    echo "RSCRIPT: System detected as UEFI..."
     # UEFI SYSTEM
     parted /dev/$DRIVE print -s # Print it first
     echo "RSCRIPT: Making partition table gpt..."

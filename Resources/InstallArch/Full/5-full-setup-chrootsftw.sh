@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Splash
+bash Resources/Others/rsplash.sh
+
+# Setup other firmware
+firmware() {
+
+echo -ne "
+--------------------------------------------------------------------------------
+    RSCRIPT - 5-full-setup-chrootsftw
+--------------------------------------------------------------------------------
+"
+
+pacman -S --noconfirm --needed base-devel efibootmgr dosfstools openssh os-prober mtools linux-headers networkmanager dhclient nano git systemd yay sudo grub
+systemctl enable --now NetworkManager
+systemctl enable NetworkManager.service
+
+}
+
+### Define script logic
+firmware
