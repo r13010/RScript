@@ -2,7 +2,7 @@
 
 # Splash
 bash Resources/Others/rsplash.sh
-
+sleep 0.5s
 
 # Setup firmware
 firmware() {

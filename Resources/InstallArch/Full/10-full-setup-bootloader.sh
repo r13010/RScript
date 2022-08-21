@@ -16,7 +16,7 @@ DRIVE=sda
 # Ask for the drive name
 echo -ne "
 --------------------------------------------------------------------------------
-    RSCRIPT: The current drive selected is /dev/$DRIVE. Is this correct?
+    RSCRIPT: The current drive selected is /dev/$DRIVE Is this correct?
 --------------------------------------------------------------------------------
 "
 options=("Yes, install Grub to it" "Choose another drive" "Wait, show me all my drives again")
@@ -30,7 +30,7 @@ do
             read -rs -p "My desired drive is /dev/" DRIVE
 echo -ne "
 --------------------------------------------------------------------------------
-    RSCRIPT: The current drive selected is /dev/$DRIVE. Is this correct?
+    RSCRIPT: The current drive selected is /dev/$DRIVE Is this correct?
 --------------------------------------------------------------------------------
 "
             ;;
