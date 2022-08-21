@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Splash
-bash Resources/Others/rsplash.sh
+#bash Resources/Others/rsplash.sh
 
 # Setup bootloader
 bootloader() {
@@ -47,6 +47,7 @@ done
 
 echo "RSCRIPT: The selected drive is /dev/$DRIVE"
 sleep 1s
+pacman -S grub
 
 # Install Grub
 if [[ ! -d "/sys/firmware/efi" ]]; then

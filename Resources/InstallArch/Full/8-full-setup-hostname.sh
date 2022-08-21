@@ -17,7 +17,7 @@ HOSTNAME="RsPC"
 # Ask for the hostname
 echo -ne "
 --------------------------------------------------------------------------------
-    RSCRIPT: The current timezone detected is $HOSTNAME. Is this correct?
+    RSCRIPT: The current hostname selected is $HOSTNAME. Is this correct?
 --------------------------------------------------------------------------------
 "
 options=("Yes, it's the corrent hostname" "Choose another hostname (name for machine)")
@@ -31,7 +31,7 @@ do
             read -rs -p "My desired hostname is " HOSTNAME
 echo -ne "
 --------------------------------------------------------------------------------
-    RSCRIPT: The current timezone selected is $HOSTNAME. Is this correct?
+    RSCRIPT: The current hostname selected is $HOSTNAME. Is this correct?
 --------------------------------------------------------------------------------
 "
             ;;
