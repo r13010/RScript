@@ -68,7 +68,8 @@ done
 
 groupadd wheel
 groupadd libvirt
-useradd -m -G wheel,libvirt -s /bin/fish $USERNAME
+groupadd plugdev
+useradd -m -G wheel,libvirt,plugdev -s /bin/fish $USERNAME
 echo "RSCRIPT: $USERNAME created, home directory created, added to wheel, libvirt group, default shell set to /bin/fish."
 
 # Ask for the user password

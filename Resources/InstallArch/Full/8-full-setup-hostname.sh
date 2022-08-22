@@ -21,11 +21,11 @@ echo -ne "
     RSCRIPT: The current hostname selected is $HOSTNAME. Is this correct?
 --------------------------------------------------------------------------------
 "
-options=("Yes, it's the corrent hostname" "Choose another hostname (name for machine)")
+options=("Yes, it's the correct hostname" "Choose another hostname (name for machine)")
 select opt in "${options[@]}"
 do
     case $opt in
-        "Yes, it's the corrent hostname")
+        "Yes, it's the correct hostname")
             break
             ;;
         "Choose another hostname (name for machine)")
