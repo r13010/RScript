@@ -3,7 +3,6 @@
  
  STILL NOT FINISHED
 
-# Credits
- This installer is highly modified for my likings, originally based on ChrisTitusTech's Arch installer
-
- Check out here(definitely better than mine): https://github.com/ChrisTitusTech/ArchTitus
+# Other references
+ This installer is highly modified for my likings, originally based on ChrisTitusTech's Arch installer.
+ Check it out [here](https://github.com/ChrisTitusTech/ArchTitus) (definitely better than mine).
