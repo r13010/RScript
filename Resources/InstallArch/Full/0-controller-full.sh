@@ -88,6 +88,9 @@ arch-chroot /mnt bash /home/RScript/Resources/InstallArch/Full/7-full-setup-lang
 arch-chroot /mnt bash /home/RScript/Resources/InstallArch/Full/8-full-setup-hostname.sh
 arch-chroot /mnt bash /home/RScript/Resources/InstallArch/Full/9-full-setup-usernpass.sh
 arch-chroot /mnt bash /home/RScript/Resources/InstallArch/Full/10-full-setup-bootloader.sh
+arch-chroot /mnt bash /home/RScript/Resources/InstallArch/Full/11-full-setup-kde.sh
+arch-chroot /mnt bash /home/RScript/Resources/InstallArch/Full/12-full-setup-drivers.sh
+arch-chroot /mnt bash /home/RScript/Resources/InstallArch/Full/13-full-finish.sh
 
 }
 

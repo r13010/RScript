@@ -28,6 +28,7 @@ do
     case $opt in
         "Continue")
             # Redirect to Minimal Installation Script
+            echo "not done yet"
             break
             ;;
         "Quit RSCRIPT")
