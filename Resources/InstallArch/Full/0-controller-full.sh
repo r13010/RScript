@@ -84,6 +84,9 @@ bash Resources/InstallArch/Full/4-full-setup-linux.sh
 arch-chroot /mnt bash /home/RScript/Resources/InstallArch/Full/2-full-setup-mirrors.sh
 arch-chroot /mnt bash /home/RScript/Resources/InstallArch/Full/5-full-setup-basesoftware.sh
 arch-chroot /mnt bash /home/RScript/Resources/InstallArch/Full/6-full-setup-microcode.sh
+clear
+echo "quick NOW"
+sleep 3s
 arch-chroot /mnt bash /home/RScript/Resources/InstallArch/Full/7-full-setup-langntimezone.sh
 arch-chroot /mnt bash /home/RScript/Resources/InstallArch/Full/8-full-setup-hostname.sh
 arch-chroot /mnt bash /home/RScript/Resources/InstallArch/Full/9-full-setup-usernpass.sh
