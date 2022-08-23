@@ -40,15 +40,16 @@ echo -ne "
     esac
 done
 
-# NEEDS REFACTORING
-sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
-locale-gen
-timedatectl --no-ask-password set-timezone $TIMEZONE
-timedatectl --no-ask-password set-ntp true
-localectl --no-ask-password set-locale LANG="en_US.UTF-8" LC_TIME="en_US.UTF-8"
-ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime
-localectl --no-ask-password set-keymap us
+# Timezone
+ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime # set the specified timezone
 hwclock --systohc
+
+# Keyboard layout (always set it to en_US.UTF-8, user can change it later)
+locale-gen
+sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+
+# Language (always set to en_US.UTF-8, user can change it later)
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
 }
 
