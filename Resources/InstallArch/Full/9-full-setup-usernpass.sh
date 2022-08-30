@@ -96,7 +96,7 @@ cd home/RScript/
 git clone https://aur.archlinux.org/yay.git
 chown $USERNAME yay/
 cd /
-su -c 'bash home/RScript/Resources/InstallArch/Full/10-full-setup-yay.sh' $USERNAME
+sudo -u $USERNAME bash home/RScript/Resources/InstallArch/Full/10-full-setup-yay.sh
 
 }
 
