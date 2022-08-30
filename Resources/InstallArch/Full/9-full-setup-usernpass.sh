@@ -58,7 +58,7 @@ do
             read -rs -p "My desired username is " USERNAME
 echo -ne "
 --------------------------------------------------------------------------------
-    RSCRIPT: The current timezone selected is $USERNAME. Is this correct?
+    RSCRIPT: The current username selected is $USERNAME. Is this correct?
 --------------------------------------------------------------------------------
 "
             ;;
@@ -92,8 +92,10 @@ echo -ne "
     RSCRIPT: Enter password for $USERNAME to install Yay Aur helper
 --------------------------------------------------------------------------------
 "
-cd /home/RScript/
+cd home/RScript/
 git clone https://aur.archlinux.org/yay.git
+chown $USERNAME yay/
+cd /
 su -c 'bash home/RScript/Resources/InstallArch/Full/10-full-setup-yay.sh' $USERNAME
 
 }
