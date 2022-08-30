@@ -85,6 +85,15 @@ sed -i 's/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
 sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 echo "RSCRIPT: Sudo rights added..."
 
+# Install yay
+echo "RSCRIPT: Installing Yay Aur helper..."
+echo -ne "
+--------------------------------------------------------------------------------
+    RSCRIPT: Enter password for $USERNAME to install Yay Aur helper
+--------------------------------------------------------------------------------
+"
+su -c 'bash home/RScript/Resources/InstallArch/Full/10-full-setup-yay.sh' $USERNAME
+
 }
 
 ### Define script logic

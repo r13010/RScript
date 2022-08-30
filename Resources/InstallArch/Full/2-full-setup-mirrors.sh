@@ -13,14 +13,19 @@ echo -ne "
     RSCRIPT - 2-full-setup-mirrors
 --------------------------------------------------------------------------------
 "
+
+# Actually setting this again
+pacman -S --noconfirm --needed pacman-contrib terminus-font
+setfont ter-v22b
+
 # Refreshing mirrors
 pacman -S --noconfirm --needed reflector curl rsync
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 
-iso=$(curl -4 ifconfig.co/country-iso)
-echo "RSCRIPT: Country detected: $iso"
+ISO=$(curl -4 ifconfig.co/country-iso)
+echo "RSCRIPT: Country detected: $ISO"
 echo "RSCRIPT: Starting reflector..."
-reflector --country $iso --latest 200 --sort rate --save /etc/pacman.d/mirrorlist
+reflector --country $ISO --latest 200 --sort rate --save /etc/pacman.d/mirrorlist
 
 sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
 

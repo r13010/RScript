@@ -20,7 +20,7 @@ pacman -Sy
 
 pacman -S --noconfirm --needed networkmanager dhclient
 systemctl enable --now NetworkManager
-pacman -S --noconfirm --needed pacman-contrib terminus-font
+pacman -S --noconfirm --needed pacman-contrib terminus-font # Will set this again later for when in chroot (not really needed but why not)
 setfont ter-v22b
 
 }
