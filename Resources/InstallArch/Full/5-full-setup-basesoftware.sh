@@ -19,12 +19,6 @@ pacman -S --noconfirm --needed base-devel efibootmgr dosfstools openssh os-probe
 systemctl enable --now NetworkManager
 systemctl enable NetworkManager.service
 
-echo "RSCRIPT: Installing Yay Aur Helper..."
-cd home/RScript/
-git clone https://aur.archlinux.org/yay.git
-cd yay/
-makepkg -si
-
 }
 
 ### Define script logic

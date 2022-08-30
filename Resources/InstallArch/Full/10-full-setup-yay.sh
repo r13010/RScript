@@ -12,6 +12,13 @@ echo -ne "
     RSCRIPT - 10-full-setup-yay
 --------------------------------------------------------------------------------
 "
+
+echo "RSCRIPT: Installing Yay Aur Helper..."
+cd home/RScript/
+git clone https://aur.archlinux.org/yay.git
+cd yay/
+makepkg -si
+
 echo sex
 sleep 20s
 }
