@@ -93,7 +93,7 @@ echo -ne "
 --------------------------------------------------------------------------------
 "
 su -c 'bash home/RScript/Resources/InstallArch/Full/10-full-setup-yay.sh' $USERNAME
-
+sleep 20s
 }
 
 ### Define script logic
