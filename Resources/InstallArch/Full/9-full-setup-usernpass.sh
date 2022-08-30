@@ -92,6 +92,8 @@ echo -ne "
     RSCRIPT: Enter password for $USERNAME to install Yay Aur helper
 --------------------------------------------------------------------------------
 "
+cd /home/RScript/
+git clone https://aur.archlinux.org/yay.git
 su -c 'bash home/RScript/Resources/InstallArch/Full/10-full-setup-yay.sh' $USERNAME
 
 }

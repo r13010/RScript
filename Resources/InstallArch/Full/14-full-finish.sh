@@ -27,5 +27,6 @@ echo -ne "
       AFTER THAT YOU CAN EJECT INSTALLATION MEDIA AND REBOOT
 --------------------------------------------------------------------------------
 "
+exit 0
 
 # RSCRIPT Finished

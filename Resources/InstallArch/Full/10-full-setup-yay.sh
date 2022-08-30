@@ -14,9 +14,7 @@ echo -ne "
 "
 
 echo "RSCRIPT: Installing Yay Aur Helper..."
-cd home/RScript/
-git clone https://aur.archlinux.org/yay.git
-cd yay/
+cd /home/RScript/yay
 makepkg -si
 
 echo sex
