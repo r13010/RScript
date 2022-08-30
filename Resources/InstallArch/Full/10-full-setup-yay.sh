@@ -15,3 +15,6 @@ echo -ne "
 echo sex
 sleep 20s
 }
+
+### Define script logic
+yay
