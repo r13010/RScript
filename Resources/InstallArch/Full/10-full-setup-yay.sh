@@ -5,7 +5,7 @@ bash home/RScript/Resources/Others/rsplash.sh
 sleep 0.5s
 
 # Setup yay aur helper
-yay() {
+yayinstall() {
 
 echo -ne "
 --------------------------------------------------------------------------------
@@ -15,7 +15,7 @@ echo -ne "
 
 echo "RSCRIPT: Installing Yay Aur Helper..."
 cd /home/RScript/yay-bin
-makepkg -si
+makepkg -si --noconfirm
 yay -Syu
 
 echo sex
@@ -23,4 +23,4 @@ sleep 20s
 }
 
 ### Define script logic
-yay
+yayinstall
