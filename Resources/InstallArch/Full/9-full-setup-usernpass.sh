@@ -93,8 +93,8 @@ echo -ne "
 --------------------------------------------------------------------------------
 "
 cd home/RScript/
-git clone https://aur.archlinux.org/yay.git
-chown $USERNAME yay/
+git clone https://aur.archlinux.org/yay-bin.git
+chown $USERNAME yay-bin/
 cd /
 sudo -u $USERNAME bash home/RScript/Resources/InstallArch/Full/10-full-setup-yay.sh
 

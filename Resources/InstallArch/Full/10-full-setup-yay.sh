@@ -14,8 +14,9 @@ echo -ne "
 "
 
 echo "RSCRIPT: Installing Yay Aur Helper..."
-cd /home/RScript/yay
+cd /home/RScript/yay-bin
 makepkg -si
+yay -Syu
 
 echo sex
 sleep 20s
