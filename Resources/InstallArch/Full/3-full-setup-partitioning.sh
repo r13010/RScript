@@ -14,6 +14,9 @@ echo -ne "
 "
 
 pacman -S --noconfirm --needed fdisk parted
+
+sleep 0.5s
+clear
 fdisk -l
 echo " "
 parted /dev/sda print devices
@@ -34,6 +37,8 @@ do
             ;;
         "Choose another drive")
             read -rs -p "My desired drive is /dev/" DRIVE
+sleep 0.5s
+clear
 echo -ne "
 --------------------------------------------------------------------------------
     RSCRIPT: The current drive selected is /dev/$DRIVE Is this correct?

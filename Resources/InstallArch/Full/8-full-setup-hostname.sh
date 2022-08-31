@@ -16,6 +16,8 @@ echo -ne "
 HOSTNAME="RsPC"
 
 # Ask for the hostname
+sleep 0.5s
+clear
 echo -ne "
 --------------------------------------------------------------------------------
     RSCRIPT: The current hostname selected is $HOSTNAME. Is this correct?
@@ -30,6 +32,8 @@ do
             ;;
         "Choose another hostname (name for machine)")
             read -rs -p "My desired hostname is " HOSTNAME
+sleep 0.5s
+clear
 echo -ne "
 --------------------------------------------------------------------------------
     RSCRIPT: The current hostname selected is $HOSTNAME. Is this correct?

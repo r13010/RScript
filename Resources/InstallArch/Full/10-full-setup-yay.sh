@@ -18,8 +18,9 @@ cd /home/RScript/yay-bin
 makepkg -si --noconfirm
 yay -Syu
 
-echo sex
-sleep 20s
+echo "RSCRIPT: Supressing Fish greeter..."
+set -U fish_greeting ""
+
 }
 
 ### Define script logic

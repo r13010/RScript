@@ -5,20 +5,6 @@ bash home/RScript/Resources/Others/rsplash.sh
 sleep 0.5s
 
 # Setup the root user and a new user
-rootpass() {
-read -rs -p "My desired root password is " ROOTPASSWORD1
-echo
-read -rs -p "Retype it for confirmation " ROOTPASSWORD2
-echo
-}
-
-userpass() {
-read -rs -p "My desired user password is " USERPASSWORD1
-echo
-read -rs -p "Retype it for confirmation " USERPASSWORD2
-echo
-}
-
 usernpass() {
 
 echo -ne "
@@ -27,7 +13,9 @@ echo -ne "
 --------------------------------------------------------------------------------
 "
 
-# Ask for the root password
+# Ask for the root password\
+sleep 0.5s
+clear
 echo -ne "
 --------------------------------------------------------------------------------
     RSCRIPT: You need to set a root password
@@ -37,6 +25,8 @@ passwd
 
 USERNAME="r"
 # Ask for a username
+sleep 0.5s
+clear
 echo -ne "
 --------------------------------------------------------------------------------
     RSCRIPT: You need to create a new user
@@ -56,6 +46,8 @@ do
             ;;
         "Choose another username")
             read -rs -p "My desired username is " USERNAME
+sleep 0.5s
+clear
 echo -ne "
 --------------------------------------------------------------------------------
     RSCRIPT: The current username selected is $USERNAME. Is this correct?
@@ -73,6 +65,8 @@ useradd -m -G wheel,libvirt,plugdev -s /bin/fish $USERNAME
 echo "RSCRIPT: $USERNAME created, home directory created, added to wheel, libvirt group, default shell set to /bin/fish."
 
 # Ask for the user password
+sleep 0.5s
+clear
 echo -ne "
 --------------------------------------------------------------------------------
     RSCRIPT: You need to set a user password
@@ -92,6 +86,7 @@ echo -ne "
     RSCRIPT: Enter password for $USERNAME to install Yay Aur helper
 --------------------------------------------------------------------------------
 "
+sleep 0.5s
 cd home/RScript/
 git clone https://aur.archlinux.org/yay-bin.git
 chown $USERNAME yay-bin/

@@ -35,6 +35,8 @@ yay -S --noconfirm --needed openrazer-meta polychromatic
 
 echo "RSCRIPT: VIDEO: Waiting for response..."
 
+sleep 0.5s
+clear
 echo -ne "
 --------------------------------------------------------------------------------
     RSCRIPT: What video driver do you want to install?

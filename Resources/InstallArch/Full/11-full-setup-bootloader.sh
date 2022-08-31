@@ -15,6 +15,8 @@ echo -ne "
 
 DRIVE=sda
 # Ask for the drive name
+sleep 0.5s
+clear
 echo -ne "
 --------------------------------------------------------------------------------
     RSCRIPT: The current drive selected is /dev/$DRIVE Is this correct?
@@ -29,6 +31,8 @@ do
             ;;
         "Choose another drive")
             read -rs -p "My desired drive is /dev/" DRIVE
+sleep 0.5s
+clear
 echo -ne "
 --------------------------------------------------------------------------------
     RSCRIPT: The current drive selected is /dev/$DRIVE Is this correct?

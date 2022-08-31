@@ -16,6 +16,8 @@ echo -ne "
 TIMEZONE="$(curl --fail https://ipapi.co/timezone)"
 
 # Ask for the timezone
+sleep 0.5s
+clear
 echo -ne "
 --------------------------------------------------------------------------------
     RSCRIPT: The current timezone detected is $TIMEZONE. Is this correct?
@@ -30,6 +32,8 @@ do
             ;;
         "Choose another timezone")
             read -rs -p "My desired timezone is " TIMEZONE
+sleep 0.5s
+clear
 echo -ne "
 --------------------------------------------------------------------------------
     RSCRIPT: The current timezone selected is $TIMEZONE. Is this correct?
