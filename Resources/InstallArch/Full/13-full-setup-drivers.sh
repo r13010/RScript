@@ -30,8 +30,8 @@ echo "RSCRIPT: BLUETOOTH: Installing bluetooth utilites..."
 pacman -S --noconfirm --needed bluez bluez-utils bluedevil
 systemctl enable bluetooth.service
 
-echo "RSCRIPT: RAZER: Installing openrazer and polychromatic..."
-yay -S --noconfirm --needed openrazer-meta polychromatic
+# echo "RSCRIPT: RAZER: Installing openrazer and polychromatic..."
+# yay -S --noconfirm --needed openrazer-meta polychromatic # Not installing as root
 
 echo "RSCRIPT: VIDEO: Waiting for response..."
 

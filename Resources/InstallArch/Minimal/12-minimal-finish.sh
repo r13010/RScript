@@ -15,17 +15,7 @@ clear
 echo -ne "
 --------------------------------------------------------------------------------
     RSCRIPT:
-      If you installed a video driver:
-        AFTER THE INSTALLATION THE VIDEO DRIVER MAY NEED
-        SOME CHECKING TO ENSURE FUNCTIONALITY, BE CAREFUL!
-
-      If you haven't:
-        INSTALL THE VIDEO DRIVER NOW AND THEN RUN:
-
-        arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
-        arch-chroot /mnt mkinitcpio -P
-
-      AFTER THAT YOU CAN EJECT INSTALLATION MEDIA AND REBOOT
+      YOU CAN EJECT INSTALLATION MEDIA AND REBOOT
 --------------------------------------------------------------------------------
 "
 exit 0
