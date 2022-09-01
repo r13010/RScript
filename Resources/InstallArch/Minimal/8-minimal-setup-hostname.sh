@@ -13,7 +13,7 @@ echo -ne "
 --------------------------------------------------------------------------------
 "
 
-HOSTNAME="RsPC"
+HOSTNAME="RsServer"
 
 # Ask for the hostname
 sleep 0.5s
