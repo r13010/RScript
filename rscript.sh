@@ -95,12 +95,16 @@ echo -ne "
 echo -ne "  Choose the tweak you want to perform:
 
 "
-options=("Go back to Main Menu, no tweaks here")
+options=("Go back to Main Menu" "Short Shutdown")
 select opt in "${options[@]}"
 do
     case $opt in
-        "Go back to Main Menu, no tweaks here")
+        "Go back to Main Menu")
             menu_main
+            break
+            ;;
+        "Short Shutdown")
+            bash Resources/InstallTweaks/Tweak_ShortShutdown/Tweak_ShortShutdown.sh
             break
             ;;
         *) echo "Invalid option";;
@@ -117,7 +121,7 @@ echo -ne "
     RSCRIPT - Main Menu > Other info
 --------------------------------------------------------------------------------
 "
-echo -ne "  RSCRIPT version alpha 0.20220820a1
+echo -ne "  RSCRIPT version beta 0.20220902a1
   Check the Github page here: https://github.com/r13010/RScript
 
 "

@@ -18,8 +18,8 @@ cd /home/RScript/yay-bin
 makepkg -si --noconfirm
 yay -Syu
 
-echo "RSCRIPT: Supressing Fish greeter..."
-set -U fish_greeting ""
+#echo "RSCRIPT: Supressing Fish greeter..."
+#set -U fish_greeting ""
 
 }
 
