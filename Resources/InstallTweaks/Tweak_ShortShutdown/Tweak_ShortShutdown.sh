@@ -16,7 +16,7 @@ echo -ne "
 "
 
 # Modify systemd params
-sed -i 's/^#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=5s/' /etc/systemd/systemd.conf
+sed -i 's/^#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=5s/' /etc/systemd/system.conf
 
 echo -ne "
 --------------------------------------------------------------------------------
