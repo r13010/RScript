@@ -25,7 +25,7 @@ DRIVE=sda
 # Ask for the drive name
 echo -ne "
 --------------------------------------------------------------------------------
-    RSCRIPT: The current drive selected is /dev/$DRIVE Is this correct?
+    RSCRIPT: The current drive selected is /dev/$DRIVE. Is this correct?
 --------------------------------------------------------------------------------
 "
 options=("Yes, DELETE ALL DATA from this drive and install Arch Linux" "Choose another drive" "Wait, show me all my drives again")
@@ -41,7 +41,7 @@ sleep 0.5s
 clear
 echo -ne "
 --------------------------------------------------------------------------------
-    RSCRIPT: The current drive selected is /dev/$DRIVE Is this correct?
+    RSCRIPT: The current drive selected is /dev/$DRIVE. Is this correct?
 --------------------------------------------------------------------------------
 "
             ;;
