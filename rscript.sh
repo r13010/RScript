@@ -95,7 +95,7 @@ echo -ne "
 echo -ne "  Choose the tweak you want to perform:
 
 "
-options=("Go back to Main Menu" "Short Shutdown")
+options=("Go back to Main Menu" "Short Shutdown" "No Grub Start Screen")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -105,6 +105,10 @@ do
             ;;
         "Short Shutdown")
             bash Resources/InstallTweaks/Tweak_ShortShutdown/Tweak_ShortShutdown.sh
+            break
+            ;;
+        "No Grub Start Screen")
+            bash Resources/InstallTweaks/Tweak_NoGrubStartScreen/Tweak_NoGrubStartScreen.sh
             break
             ;;
         *) echo "Invalid option";;
