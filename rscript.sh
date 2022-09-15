@@ -92,7 +92,8 @@ echo -ne "
     RSCRIPT - Main Menu > Install Tweaks
 --------------------------------------------------------------------------------
 "
-echo -ne "  Choose the tweak you want to perform:
+echo -ne "  ALL TWEAKS NEEDS TO RUN UNDER ROOT
+  Choose the tweak you want to perform:
 
 "
 options=("Go back to Main Menu" "Short Shutdown" "No Grub Start Screen")
@@ -101,6 +102,11 @@ do
     case $opt in
         "Go back to Main Menu")
             menu_main
+            break
+            ;;
+        "All the tweaks")
+            bash Resources/InstallTweaks/Tweak_ShortShutdown/Tweak_ShortShutdown.sh
+            bash Resources/InstallTweaks/Tweak_ShortShutdown/Tweak_ShortShutdown.sh
             break
             ;;
         "Short Shutdown")

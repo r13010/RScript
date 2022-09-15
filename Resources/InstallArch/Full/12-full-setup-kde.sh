@@ -26,7 +26,10 @@ pacman -S --noconfirm --needed man kdeconnect krunner spectacle ksystemlog kalar
 pacman -S --noconfirm --needed bluedevil packagekit-qt5 akonadi-calendar-tools akonadi-import-wizard audiocd-kio ffmpegthumbs kdegraphics-thumbnailers kdenetwork-filesharing print-manager libappindicator-gtk3
 
 echo "RSCRIPT: Installing Media related software..."
-pacman -S --noconfirm --needed kate vlc ark filelight gwenview k3b gparted okular svgpart
+pacman -S --noconfirm --needed kate kwrite vlc ark filelight gwenview k3b gparted okular svgpart
+
+echo "RSCRIPT: Installing Jre..."
+pacman -S --noconfirm --needed jre11-openjdk-headless jre11-openjdk
 
 echo "RSCRIPT: Disabling xorg sddm mouse acceleration..."
 echo -ne 'Section "InputClass"

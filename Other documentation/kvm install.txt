@@ -1,0 +1,88 @@
+1.bios settings
+
+enable virtualization (on amd is svm mode)
+enable iommu
+
+2.edit grub params, edit file
+location: /etc/default/grub
+from:    GRUB_CMDLINE_LINUX_DEFAULT="quiet [...] "
+to:      GRUB_CMDLINE_LINUX_DEFAULT="quiet amd_iommu=on kvm.ignore_msrs=1 [...] "
+(or intel_iommu=on for intel systems)
+
+3.regen grub, run script
+grub-mkconfig -o /boot/grub/grub.cfg
+
+4.check if iommu is on
+dmesg | grep -i -e DMAR -e IOMMU
+
+5.take the gpu id (run this in bash), run script
+shopt -s nullglob
+for g in $(find /sys/kernel/iommu_groups/* -maxdepth 0 -type d | sort -V); do
+    echo "IOMMU Group ${g##*/}:"
+    for d in $g/devices/*; do
+        echo -e "\t$(lspci -nns ${d##*/})"
+    done;
+done;
+
+***
+YOU NEED TO TAKE ALL THE IDS FROM A GROUP
+NOTE THE IDS SOMEWHERE (an id is like [id:id])
+
+IF YOUR GPU IS IN A GROUP WITH OTHER DEVICES MEANS THAT YOUR GROUPING IS FKED UP.
+ON gigabyte b450m ds3h ONLY THE TOP GPU PCIE SLOT CAN BE PASSTHROUGH SO YOU NEED TO PUT YOUR WEAK GPU ON TOP OF THE GOOD ONE OR WHATEVER
+***
+
+6.hijack the ids to make them passthrough, edit file
+location: /etc/modprobe.d/vfio.conf
+fill with: options vfio-pci ids=
+AND THEN PUT THE IDS THERE WITH , (like id:id,id:id,id:id)
+
+7.add ignore to msrs, edit file
+location: /etc/modprobe.d/ignore_msrs.conf
+fill with: options kvm ignore_msrs=1
+
+8.adjust modules, edit file
+location: /etc/mkinitcpio.conf
+from: MODULES=""
+to: MODULES="vfio_pci vfio vfio_iommu_type1 vfio_virqfd"
+AND CHECK FOR HOOKS PARAMS TO CONTAIN modconf
+HOOKS=" [...] modconf [...] "
+
+9.blacklist old driver in use, edit file
+THE DRIVER FOR THAT CARD SHOULD BE ALREADY UNINSTALLED BUT IF ANYTHING HAPPENS TRY THIS
+location: /etc/modprobe.d/blacklist-gpudriver.conf
+fill with: blacklist amdgpu
+
+or for nouveau and nvidia
+blacklist nouveau
+blacklist nvidia
+options nouveau modeset=0
+
+etc etc
+
+10.regen initramfs, run script
+mkinitcpio -P
+
+11.reboot, the card should be hijacked, run script
+reboot now
+
+12.check card and what driver its using (should be using vfio-pci), run script
+sudo dmesg | grep -i vfio
+lspci -nnk
+
+13.install kvm pks, run script
+pacman -S qemu libvirt ovmf virt-manager ebtables iptables dnsmasq
+
+14.enable services, run script
+systemctl start libvirtd.service
+systemctl enable libvirtd.service
+
+systemctl start virtlogd.socket
+systemctl enable virtlogd.socket
+
+sudo sudo systemctl restart libvirtd
+
+virsh net-start default
+virsh net-autostart default
+
+done

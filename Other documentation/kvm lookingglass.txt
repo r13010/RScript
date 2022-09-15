@@ -1,0 +1,61 @@
+guide: https://looking-glass.io/docs/B5.0.1/install/
+
+1.host linux prep - install looking glass
+
+yay -S looking-glass
+
+2.host linux prep - ivshmem device and vm settings
+
+open vm - details tab - overview tab - xml
+add (around the end, under membaloon but before end of devices):
+
+<shmem name="looking-glass">
+      <model type="ivshmem-plain"/>
+      <size unit="M">64</size>
+      <address type="pci" domain="0x0000" bus="0x10" slot="0x01" function="0x0"/>
+</shmem>
+
+find the <memballoon> tag and set its type to 'none'
+<memballoon model="none"/>
+
+delete the tablet
+go to video QXL and change it from 'QXL' to 'none' for when you want to use it
+FOR CLIPBOARD:
+Install the SPICE guest tools on the Windows guest from https://www.spice-space.org/download.html#windows-binaries.
+or just go to looking-glass.io and search clipboard sync, you will find it
+
+make sure you find this in the vm xml:
+
+<channel type="spicevmc">
+  <target type="virtio" name="com.redhat.spice.0"/>
+  <address type="virtio-serial" controller="0" bus="0" port="1"/>
+</channel>
+
+IMPORTANT
+// make sure the vm doesnt have secureboot enabled
+// make sure the looking glass map memory is shared:
+chown /dev/shm/looking-glass and then from dolphin give it to your user and libvirt-qemu user
+or BETTER:
+add your user and group (same) to the qemu configuration file:
+/etc/libvirt/qemu.conf
+user = "r"
+group = "r"
+
+3.guest windows 10 prep - ivshmem device
+
+go to: https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/upstream-virtio/
+the 92M variant
+and install it through device manager - update pci ram controller with this (amd64)
+
+4.guest windows 10 prep - looking glass
+
+go to: https://looking-glass.io/downloads
+and download from other versions: B5.0.1 or later, windows
+
+and install it and create a task in task scheduler to start lookingglass.exe at login with highest privileges
+
+5.open looking glass from linux host
+
+make sure you have a dedicated gpu passthrough the host
+use this for fullscreen and changing the capture key to insert:
+looking-glass-client -F -m 107

@@ -1,0 +1,25 @@
+1.host linux prep - install scream
+
+yay -S scream
+
+2.guest windows 10 prep - install scream
+
+go to: https://github.com/duncanthrax/scream
+and restart
+oh and make sure you dont have secureboot on
+
+3.start scream from linux host
+
+use:
+scream -i virbr0
+
+where 'virbr0' is the virtual interface the kvm uses
+DONT configure anything in the windows 10 guest (in regedit) for scream,
+this will make scream to work under multicast mode on port samsungunidex/4010
+
+optionally (maybe not optionally) check the firewall to allow both internet on the interface and
+to scream to function on that port, because it may be blocking it if its not working
+
+in firewalld (if you use it as your firewall) go and select virbr0 and change its zone as trusted,
+leave yours as home, etc
+
