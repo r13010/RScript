@@ -1,7 +1,7 @@
 # RScript
  A simple install manager for Arch Linux - simple, flexible, modular
  
- STILL NOT FINISHED
+ 69% finished
 
 # Other references
  This installer is highly modified for my likings, originally based on ChrisTitusTech's Arch installer.
