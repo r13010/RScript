@@ -60,10 +60,14 @@ echo -ne "
 echo -ne "  Choose the installation type you want to perform:
 
 "
-options=("Minimal" "Full" "Go back to Main Menu")
+options=("Go back to Main Menu" "Minimal" "Full")
 select opt in "${options[@]}"
 do
     case $opt in
+        "Go back to Main Menu")
+            menu_main
+            break
+            ;;
         "Minimal")
             # Redirect to Minimal Install Script
             bash Resources/InstallArch/Minimal/0-controller-minimal.sh
@@ -72,10 +76,6 @@ do
         "Full")
             # Redirect to Full Install Script
             bash Resources/InstallArch/Full/0-controller-full.sh
-            break
-            ;;
-        "Go back to Main Menu")
-            menu_main
             break
             ;;
         *) echo "Invalid option";;
