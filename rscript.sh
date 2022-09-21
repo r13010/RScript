@@ -18,7 +18,7 @@ echo -ne "
 echo -ne "  You are in the Main Menu, select an option:
 
 "
-options=("Install Arch" "Install Tweaks" "Other info" "Quit RSCRIPT")
+options=("Install Arch" "Install Tweaks" "Install KVM Setup" "Other info" "Quit RSCRIPT")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -28,6 +28,10 @@ do
             ;;
         "Install Tweaks")
             menu_inst_tweaks
+            break
+            ;;
+        "Install KVM Setup")
+            menu_inst_kvm
             break
             ;;
         "Other info")
@@ -68,12 +72,12 @@ do
             menu_main
             break
             ;;
-        "Minimal")
+        "Minimal (root)")
             # Redirect to Minimal Install Script
             bash Resources/InstallArch/Minimal/0-controller-minimal.sh
             break
             ;;
-        "Full")
+        "Full (root)")
             # Redirect to Full Install Script
             bash Resources/InstallArch/Full/0-controller-full.sh
             break
@@ -92,8 +96,7 @@ echo -ne "
     RSCRIPT - Main Menu > Install Tweaks
 --------------------------------------------------------------------------------
 "
-echo -ne "  ALL TWEAKS NEEDS TO RUN UNDER ROOT
-  Choose the tweak you want to perform:
+echo -ne "  Choose the tweak you want to perform:
 
 "
 options=("Go back to Main Menu" "Short Shutdown" "No Grub Start Screen")
@@ -104,16 +107,16 @@ do
             menu_main
             break
             ;;
-        "All the tweaks")
+        "All the tweaks (root)")
             bash Resources/InstallTweaks/Tweak_ShortShutdown/Tweak_ShortShutdown.sh
             bash Resources/InstallTweaks/Tweak_ShortShutdown/Tweak_ShortShutdown.sh
             break
             ;;
-        "Short Shutdown")
+        "Short Shutdown (root)")
             bash Resources/InstallTweaks/Tweak_ShortShutdown/Tweak_ShortShutdown.sh
             break
             ;;
-        "No Grub Start Screen")
+        "No Grub Start Screen (root)")
             bash Resources/InstallTweaks/Tweak_NoGrubStartScreen/Tweak_NoGrubStartScreen.sh
             break
             ;;
@@ -131,7 +134,7 @@ echo -ne "
     RSCRIPT - Main Menu > Other info
 --------------------------------------------------------------------------------
 "
-echo -ne "  RSCRIPT version beta 0.20220902a1
+echo -ne "  RSCRIPT version beta 0.20220922a1
   Check the Github page here: https://github.com/r13010/RScript
 
 "
@@ -148,5 +151,54 @@ do
 done
 }
 
+## Menu Install KVM
+menu_otherinfo() {
+
+clear
+echo -ne "
+--------------------------------------------------------------------------------
+    RSCRIPT - Main Menu > Install KVM Setup
+--------------------------------------------------------------------------------
+"
+echo -ne "  Choose the installation type you want to perform:
+
+"
+options=("Go back to Main Menu" "KVMGPU #1 Enable virtualization (root)" "KVMGPU #2 Hijack (root)" "KVMGPU #3 Software (root)" "Looking Glass" "Scream Audio")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "Go back to Main Menu")
+            menu_main
+            break
+            ;;
+        "KVMGPU #1 Enable virtualization (root)")
+            # Redirect to KVM GPU Passthrough Script 1
+            bash Resources/InstallKVM/KVMGPU/0-kvmgpu-enablevirt.sh
+            break
+            ;;
+        "KVMGPU #2 Hijack (root)")
+            # Redirect to KVM GPU Passthrough Script 1
+            bash Resources/InstallKVM/KVMGPU/1-kvmgpu-hijack.sh
+            break
+            ;;
+        "KVMGPU #3 Software (root)")
+            # Redirect to KVM GPU Passthrough Script 1
+            bash Resources/InstallKVM/KVMGPU/2-kvmgpu-software.sh
+            break
+            ;;
+        "Looking Glass")
+            # Redirect to Looking Glass Script
+            bash Resources/InstallArch/
+            break
+            ;;
+        "Scream Audio")
+            # Redirect to Scream Audio Script
+            bash Resources/InstallArch/
+            break
+            ;;
+        *) echo "Invalid option";;
+    esac
+done
+}
 ### Define script logic
 menu_main

@@ -1,4 +1,4 @@
-1.bios settings
+1 1.bios settings
 
 enable virtualization (on amd is svm mode)
 enable iommu
@@ -12,13 +12,16 @@ to:      GRUB_CMDLINE_LINUX_DEFAULT="quiet amd_iommu=on kvm.ignore_msrs=1 [...] 
 3.regen grub, run script
 grub-mkconfig -o /boot/grub/grub.cfg
 
-4.check if iommu is on
+4.check if iommu is on *
 dmesg | grep -i -e DMAR -e IOMMU
+
+1 turn on virtualization
+2
 
 5.take the gpu id (run this in bash), run script
 shopt -s nullglob
 for g in $(find /sys/kernel/iommu_groups/* -maxdepth 0 -type d | sort -V); do
-    echo "IOMMU Group ${g##*/}:"
+    echo 'IOMMU Group ${g##*/}:'
     for d in $g/devices/*; do
         echo -e "\t$(lspci -nns ${d##*/})"
     done;
@@ -66,14 +69,17 @@ mkinitcpio -P
 11.reboot, the card should be hijacked, run script
 reboot now
 
-12.check card and what driver its using (should be using vfio-pci), run script
+2 hijack
+3
+
+-12.check card and what driver its using (should be using vfio-pci), run script
 sudo dmesg | grep -i vfio
 lspci -nnk
 
-13.install kvm pks, run script
-pacman -S qemu libvirt ovmf virt-manager ebtables iptables dnsmasq
+12 13.install kvm pks, run script
+pacman -S --noconfirm --needed qemu libvirt ovmf virt-manager ebtables iptables dnsmasq
 
-14.enable services, run script
+13 14.enable services, run script
 systemctl start libvirtd.service
 systemctl enable libvirtd.service
 
@@ -85,4 +91,5 @@ sudo sudo systemctl restart libvirtd
 virsh net-start default
 virsh net-autostart default
 
+3 verify and software
 done
