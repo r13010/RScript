@@ -1,6 +1,7 @@
 # RScript
  A simple install manager for Arch Linux - simple, flexible, modular
- 
+
+ NOT FUNCTIONAL
  69% finished
 
 # Other references
