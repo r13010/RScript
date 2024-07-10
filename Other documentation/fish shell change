@@ -12,5 +12,8 @@ then change the shell for curent logged in user with
 chsh -s /bin/bash
 then reboot
 
+//disable greeting
+set -U fish_greeting ''
+
 //config in fish
 fish_config
