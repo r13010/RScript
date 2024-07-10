@@ -1,0 +1,16 @@
+//changing shell to fish
+
+//install fish
+sudo pacman -S fish
+
+//change shell
+check where is fish located with:
+which fish
+probably in /usr/bin/fish
+
+then change the shell for curent logged in user with
+chsh -s /bin/bash
+then reboot
+
+//config in fish
+fish_config
