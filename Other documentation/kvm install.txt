@@ -47,7 +47,8 @@ fill with: options kvm ignore_msrs=1
 8.adjust modules, edit file
 location: /etc/mkinitcpio.conf
 from: MODULES=""
-to: MODULES="vfio_pci vfio vfio_iommu_type1 vfio_virqfd"
+to: MODULES="vfio_pci vfio vfio_iommu_type1"
+ vfio_virqfd IS BUILT IN NOW
 AND CHECK FOR HOOKS PARAMS TO CONTAIN modconf
 HOOKS=" [...] modconf [...] "
 
@@ -77,7 +78,7 @@ sudo dmesg | grep -i vfio
 lspci -nnk
 
 12 13.install kvm pks, run script
-pacman -S --noconfirm --needed qemu libvirt ovmf virt-manager ebtables iptables dnsmasq
+pacman -S --needed qemu libvirt ovmf virt-manager dnsmasq
 
 13 14.enable services, run script
 systemctl start libvirtd.service
