@@ -1,1 +1,23 @@
 creating a swapfile and adding hibernation support
+
+
+https://wiki.archlinux.org/title/Swap#Swap_file
+
+//make swap file
+//RECOMMENDED SIZES (LOOK FOR ALLOWING WITH HIBERNATION)
+https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/storage_administration_guide/ch-swapspace#ch-swapspace
+
+sudo mkswap -U clear --size 48G --file /swapfile
+
+//activate
+sudo swapon /swapfile
+
+(to check)
+swapon -show
+
+//Finally, edit the fstab configuration to add an entry for the swap file:
+sudo nano /etc/fstab
+# swap
+/swapfile none swap defaults 0 0
+
+then mkinitcpio -P your_kernel
