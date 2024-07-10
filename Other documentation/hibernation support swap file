@@ -43,9 +43,11 @@ sudo filefrag -v /swapfile | awk '$1=="0:" {print substr($4, 1, length($4)-2)}'
 resume_offset=value
 example resume_offset=192980992
 
+//and from /etc/fstab you gen the UUID from root
+
 //and add this to kernel params
 //edit grub
 sudo nano /etc/default/grub
-GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 resume_offset=192980992 quiet"
+GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 resume=UUID="4209c845-f495-4c43-8a03-5363dd433153" resume_offset=192980992 quiet"
 //should look like this, now rebuild grub
 sudo grub-mkconfig -o /boot/grub/grub.cfg
