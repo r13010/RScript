@@ -5,7 +5,7 @@ dolphin
 dolphin-plugins
 
 kalarm
-kalendar
+//kalendar
 kamera
 kamoso
 kcalc
