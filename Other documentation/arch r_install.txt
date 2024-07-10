@@ -14,6 +14,11 @@ Ctrl+C
 lsblk       //simple
 fdisk -l    //more detailed
 
+NEW PARTITION SCHEME FOR GPT
+    //-/mnt/boot - EFI - 2048mb
+    // /mnt - ROOT - the rest
+swap will be make later through swapfile
+
 2.2.partition scheme for gpt
     //-/mnt/boot - efi system partition - at least 300mb
     // swap - more than 512mb
@@ -32,7 +37,7 @@ print
 mkpart "swap partition" linux-swap 301mb 2048+301mb(2349mb)
 print
 2.3.3.make root partition
-mkpart "root partition" ext4 2349mb 100%
+mkpart "ROOT" ext4 2349mb 100%
 print
 quit
 
@@ -79,7 +84,7 @@ hwclock --systohc
 7.2.keyboard layout - if /etc/locale.gen is not generated use
 locale-gen
 7.3.keyboard layout - edit /etc/locale.gen and:
-//uncomment en_US.UTF-8 UTF-8
+uncomment en_US.UTF-8 UTF-8
 //uncomment ro_RO.UTF-8 UTF-8
 nano /etc/locale.gen
 7.4.language - create /etc/locale.conf file and:
@@ -108,6 +113,9 @@ pacman -S amd-ucode     //for amd
 pacman -S intel-ucode   //for intel
 11.4.grub config
 grub-mkconfig -o /boot/grub/grub.cfg
+
+now to and passwd your root accound before reboot
+preferably make r account as well
 
 12.reboot and eject installation media
 reboot
