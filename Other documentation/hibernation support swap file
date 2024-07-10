@@ -1,6 +1,6 @@
 creating a swapfile and adding hibernation support
 
-
+SWAPFILE PART
 https://wiki.archlinux.org/title/Swap#Swap_file
 
 //make swap file
@@ -20,4 +20,32 @@ sudo nano /etc/fstab
 # swap
 /swapfile none swap defaults 0 0
 
-then mkinitcpio -P your_kernel
+then sudo mkinitcpio -P your_kernel
+
+
+HIBERNATION PART
+//making resume hook, edit initramfs to add resume
+edit
+sudo nano /etc/mkinitcpio.conf
+//resume hook must go after the udev hook
+HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block filesystems resume fsck)
+//regen
+sudo mkinitcpio -P your_kernel
+
+//Manually specify hibernate location
+look at 
+https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate#Hibernation
+4.3.1.1.Acquire swap file offset for details
+
+//basically
+sudo filefrag -v /swapfile | awk '$1=="0:" {print substr($4, 1, length($4)-2)}'
+//and take the value to create
+resume_offset=value
+example resume_offset=192980992
+
+//and add this to kernel params
+//edit grub
+sudo nano /etc/default/grub
+GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 resume_offset=192980992 quiet"
+//should look like this, now rebuild grub
+sudo grub-mkconfig -o /boot/grub/grub.cfg
